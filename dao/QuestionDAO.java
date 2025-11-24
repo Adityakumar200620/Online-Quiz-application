@@ -10,7 +10,7 @@ public class QuestionDAO {
 
     public static List<Question> getAllQuestions() {
         List<Question> list = new ArrayList<>();
-        try (Connection con = DBConnection.getConnection()) {
+        try (Connection con = 'DBConnection'.getConnection()) {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM questions");
 
