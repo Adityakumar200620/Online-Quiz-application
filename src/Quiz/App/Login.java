@@ -51,6 +51,12 @@ public class Login extends JFrame implements ActionListener{
 
         setSize(1200, 500);
         setLocation(200, 150);
+        Thread t = new Thread(() -> {
+            System.out.println("Login Screen Loaded...");
+            try { Thread.sleep(500); } catch (Exception e) {}
+        });
+        t.start();
+
         setVisible(true);
     }
 

@@ -3,10 +3,17 @@ package Quiz.App;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 
 public class Score extends JFrame implements ActionListener {
+    private static ArrayList<Integer> scoreList = new ArrayList<>();
+
 
     Score(String name, int score) {
+        scoreList.add(score);
+        System.out.println("All Scores: " + scoreList);
+
         setBounds(400, 150, 750, 550);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
@@ -27,6 +34,7 @@ public class Score extends JFrame implements ActionListener {
         lblscore.setBounds(350, 200, 300, 30);
         lblscore.setFont(new Font("Tahoma", Font.PLAIN, 26));
         add(lblscore);
+        new ScoreDAO().insertScore(name, score);
 
         JButton submit = new JButton("Play Again");
         submit.setBounds(380, 270, 120, 30);
