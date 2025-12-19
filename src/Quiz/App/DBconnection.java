@@ -1,6 +1,5 @@
 package Quiz.App;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -14,7 +13,7 @@ public class DBconnection {
                     "Aditya@1234"
             );
         } catch (Exception e) {
-            System.out.println("DB Error: " + e.getMessage());
+            System.out.println("DB not available (local). Skipping insert.");
             return null;
         }
     }

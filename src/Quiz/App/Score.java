@@ -9,14 +9,18 @@ import java.util.ArrayList;
 public class Score extends JFrame implements ActionListener {
     private static ArrayList<Integer> scoreList = new ArrayList<>();
 
+    public Score(String name, int score) {
 
-    Score(String name, int score) {
         scoreList.add(score);
         System.out.println("All Scores: " + scoreList);
 
         setBounds(400, 150, 750, 550);
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
+
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/score.png"));
         Image i2 = i1.getImage().getScaledInstance(300, 250, Image.SCALE_DEFAULT);
@@ -25,16 +29,25 @@ public class Score extends JFrame implements ActionListener {
         image.setBounds(0, 200, 300, 250);
         add(image);
 
-        JLabel heading = new JLabel("Thankyou " + name + " for playing Simple Minds");
+
+        JLabel heading = new JLabel("Thank you " + name + " for playing Simple Minds");
         heading.setBounds(45, 30, 700, 30);
         heading.setFont(new Font("Tahoma", Font.PLAIN, 26));
         add(heading);
+
 
         JLabel lblscore = new JLabel("Your score is " + score);
         lblscore.setBounds(350, 200, 300, 30);
         lblscore.setFont(new Font("Tahoma", Font.PLAIN, 26));
         add(lblscore);
-        new ScoreDAO().insertScore(name, score);
+
+
+        try {
+            new ScoreDAO().insertScore(name, score);
+        } catch (Exception e) {
+            System.out.println("DB not available. Skipping insert.");
+        }
+
 
         JButton submit = new JButton("Play Again");
         submit.setBounds(380, 270, 120, 30);
@@ -46,6 +59,7 @@ public class Score extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent ae) {
         setVisible(false);
         new Login();

@@ -62,6 +62,10 @@ public class Login extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == rules) {
+            if (tfname.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter your name");
+                return;
+            }
             String name = tfname.getText();
             setVisible(false);
             new Rules(name);
